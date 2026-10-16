@@ -93,7 +93,8 @@ const about: About = {
     title: "Introduction",
     description: (
       <>
-        {person.firstName} is a Johannesburg-based business analyst who turns vague business needs
+        {person.firstName} is a Johannesburg-based business analyst, with a Diploma in ICT in
+        Business Analysis from the Durban University of Technology, who turns vague business needs
         into clear requirements, user stories and process flows that development teams can build
         from. At MICT SETA, {person.firstName} worked between stakeholders and developers on case
         management, onboarding and compliance, and property management systems, and is now on the CAPACITI Data
@@ -147,8 +148,18 @@ const about: About = {
   },
   studies: {
     display: true, // set to false to hide this section
-    title: "Training",
+    title: "Education & Training",
     institutions: [
+      {
+        name: "Durban University of Technology (DUT)",
+        description: (
+          <>
+            Diploma in Information & Communications Technology in Business Analysis, awarded
+            December 2022. Distinctions in Business Analysis Project I & II, IT Project Management,
+            Business Fundamentals II, Financial Accounting I and Theory of Internal Auditing II.
+          </>
+        ),
+      },
       {
         name: "CAPACITI – Data Engineering Programme",
         description: <>2026 – present.</>,
