@@ -165,7 +165,7 @@ export default function Home() {
             { value: "2+ yrs", label: "of business analysis at UltimetaX and MICT SETA" },
             { value: "4 in 4", label: "AI tools built and shipped in four weeks" },
             { value: "41", label: "acceptance criteria written before coding Tower" },
-            { value: "81", label: "automated tests keeping Tower honest" },
+            { value: "89", label: "automated tests keeping Tower honest" },
           ]}
         />
       </RevealFx>
