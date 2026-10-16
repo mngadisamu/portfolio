@@ -185,7 +185,7 @@ const about: About = {
           </>,
           <>
             Tower: wrote 10 user stories with 41 acceptance criteria, measured the classifier honestly
-            (62.7% vs a 31.7% baseline) and designed the product around that result, backed by 81
+            (62.7% vs a 31.7% baseline) and designed the product around that result, backed by 89
             automated tests.
           </>,
         ],
