@@ -122,7 +122,7 @@ const about: About = {
       },
       {
         company: "MICT SETA",
-        timeframe: "Mar 2025 - Mar 2026",
+        timeframe: "Mar 2025 - Feb 2026",
         role: "Business Analyst Intern",
         achievements: [
           <>
