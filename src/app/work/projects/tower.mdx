@@ -16,7 +16,7 @@ images:
 <StatGrid items={[
   { value: "62.7%", label: "reason accuracy on unseen tweets, vs 31.7% for guessing" },
   { value: "79%", label: "accuracy when the model is at least 50% sure" },
-  { value: "81", label: "automated tests covering roles, guardrails and journeys" },
+  { value: "89", label: "automated tests covering roles, guardrails and journeys" },
   { value: "4", label: "user roles across several airlines in one app" },
 ]} />
 
@@ -114,7 +114,7 @@ Each airline gets its own branded links, accounts and data. One airline can neve
 - **Model:** scikit-learn TF-IDF + logistic regression, trained on 7,264 de-duplicated negative tweets, tested on 1,816 unseen ones. Strongest on Lost Luggage (F1 0.78), Cancelled Flight (0.75) and Late Flight (0.74).
 - **App:** Streamlit, with SQLite storage, salted and hashed passwords, lockout after repeated failed sign-ins, and one-hour session timeouts.
 - **Config:** urgency rules, team routing, templates, blocked words and the confidence threshold all live in one `airline.json` file, so business rules can change without code changes.
-- **Quality:** 81 automated pytest tests covering the triage engine, guardrails, roles, conversations and the platform.
+- **Quality:** 89 automated pytest tests covering the triage engine, guardrails, roles, conversations and the platform.
 
 ## Honest limits
 

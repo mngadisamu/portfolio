@@ -163,7 +163,7 @@ const about: About = {
         At UltimetaX and MICT SETA I worked between stakeholders and developers, most recently on MICT SETA's case management, onboarding
         and verification, and property management systems. On the CAPACITI x Clickatell AI Bootcamp I
         shipped a new AI tool every week, ending with Tower, an airline complaint triage assistant
-        with 81 automated tests and a person approving every reply. The thread through all of it:{" "}
+        with 89 automated tests and a person approving every reply. The thread through all of it:{" "}
         <strong>write down the edge cases and limits before building, and show stakeholders
         something real early.</strong>
       </>
