@@ -9,6 +9,7 @@ export {
   work,
   gallery,
   portfolioPdf,
+  tools,
 } from "./content";
 
 export {

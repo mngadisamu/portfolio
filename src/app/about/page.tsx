@@ -12,7 +12,8 @@ import {
   Schema,
   Row,
 } from "@once-ui-system/core";
-import { baseURL, about, person, social, portfolioPdf } from "@/resources";
+import { baseURL, about, person, social, portfolioPdf, tools } from "@/resources";
+import { ToolGrid } from "@/components/Showcase";
 import TableOfContents from "@/components/about/TableOfContents";
 import styles from "@/components/about/about.module.scss";
 import React from "react";
@@ -48,6 +49,11 @@ export default function About() {
       title: about.technical.title,
       display: about.technical.display,
       items: about.technical.skills.map((skill) => skill.title),
+    },
+    {
+      title: "Tools I use",
+      display: true,
+      items: tools.map((group) => group.title),
     },
   ];
   return (
@@ -338,6 +344,11 @@ export default function About() {
               </Column>
             </>
           )}
+
+          <Heading as="h2" id="Tools I use" variant="display-strong-s" marginTop="64" marginBottom="24">
+            Tools I use
+          </Heading>
+          <ToolGrid groups={tools} />
         </Column>
       </Row>
     </Column>

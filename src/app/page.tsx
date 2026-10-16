@@ -12,11 +12,11 @@ import {
   Line,
   Icon,
 } from "@once-ui-system/core";
-import { home, about, person, baseURL, routes, portfolioPdf, social } from "@/resources";
+import { home, about, person, baseURL, routes, portfolioPdf, social, tools } from "@/resources";
 import { Mailchimp } from "@/components";
 import { Projects } from "@/components/work/Projects";
 import { Posts } from "@/components/blog/Posts";
-import { StoryCard, StatGrid } from "@/components/Showcase";
+import { StoryCard, StatGrid, ToolGrid } from "@/components/Showcase";
 
 export async function generateMetadata() {
   return Meta.generate({
@@ -162,7 +162,7 @@ export default function Home() {
       <RevealFx translateY="16" delay={0.5} fillWidth paddingX="l">
         <StatGrid
           items={[
-            { value: "1 yr", label: "as a Business Analyst Intern at MICT SETA" },
+            { value: "2+ yrs", label: "of business analysis at UltimetaX and MICT SETA" },
             { value: "4 in 4", label: "AI tools built and shipped in four weeks" },
             { value: "41", label: "acceptance criteria written before coding Tower" },
             { value: "81", label: "automated tests keeping Tower honest" },
@@ -200,6 +200,17 @@ export default function Home() {
             </Column>
           ))}
         </Row>
+      </Column>
+
+      {/* Tools */}
+      <Column fillWidth gap="24">
+        <SectionTitle eyebrow="Toolkit" title="Tools I work with" />
+        <Column fillWidth paddingX="l" gap="12">
+          <ToolGrid groups={tools} compact />
+          <Button href="/about#Tools I use" variant="tertiary" size="s" arrowIcon data-border="rounded">
+            See them grouped by how I use them
+          </Button>
+        </Column>
       </Column>
 
       {/* Featured */}

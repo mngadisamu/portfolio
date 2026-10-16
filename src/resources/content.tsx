@@ -17,6 +17,65 @@ const person: Person = {
 /** The downloadable PDF portfolio (in /public). */
 const portfolioPdf = "/Samukelo-Mngadi-Portfolio.pdf";
 
+/** Tools grouped by how they're used. Icons come from src/resources/icons.ts. */
+const tools: { title: string; items: { name: string; icon?: string }[] }[] = [
+  {
+    title: "Planning & delivery",
+    items: [
+      { name: "Jira", icon: "jira" },
+      { name: "Microsoft Planner", icon: "kanban" },
+      { name: "Word", icon: "word" },
+      { name: "Excel", icon: "excel" },
+      { name: "PowerPoint", icon: "powerpoint" },
+    ],
+  },
+  {
+    title: "Design & prototyping",
+    items: [
+      { name: "Figma", icon: "figma" },
+      { name: "Visily", icon: "layout" },
+      { name: "Google AI Studio", icon: "google" },
+    ],
+  },
+  {
+    title: "Data & analysis",
+    items: [
+      { name: "Python", icon: "python" },
+      { name: "Jupyter Notebook", icon: "jupyter" },
+      { name: "MySQL", icon: "mysql" },
+      { name: "SQLite", icon: "sqlite" },
+      { name: "pandas", icon: "pandas" },
+      { name: "scikit-learn", icon: "scikitlearn" },
+      { name: "Highcharts", icon: "chartLine" },
+      { name: "Plotly", icon: "plotly" },
+      { name: "Kaggle", icon: "kaggle" },
+    ],
+  },
+  {
+    title: "AI & app building",
+    items: [
+      { name: "Gemini API", icon: "gemini" },
+      { name: "Streamlit", icon: "streamlit" },
+      { name: "React", icon: "react" },
+      { name: "TypeScript", icon: "typescript" },
+      { name: "Vite", icon: "vite" },
+      { name: "Node.js", icon: "nodejs" },
+    ],
+  },
+  {
+    title: "Version control, cloud & hosting",
+    items: [
+      { name: "Git", icon: "git" },
+      { name: "GitHub", icon: "github" },
+      { name: "GitHub Actions", icon: "githubActions" },
+      { name: "AWS S3", icon: "awsS3" },
+      { name: "Apache", icon: "apache" },
+      { name: "Vercel", icon: "vercel" },
+      { name: "Streamlit Community Cloud", icon: "streamlit" },
+    ],
+  },
+];
+
 const newsletter: Newsletter = {
   display: false,
   title: <>Subscribe to {person.firstName}'s Newsletter</>,
@@ -101,7 +160,7 @@ const about: About = {
         stories and process flows that developers can build from, and I test what gets built.
         <br />
         <br />
-        At MICT SETA I worked between stakeholders and developers on case management, onboarding
+        At UltimetaX and MICT SETA I worked between stakeholders and developers, most recently on MICT SETA's case management, onboarding
         and verification, and property management systems. On the CAPACITI x Clickatell AI Bootcamp I
         shipped a new AI tool every week, ending with Tower, an airline complaint triage assistant
         with 81 automated tests and a person approving every reply. The thread through all of it:{" "}
@@ -158,6 +217,35 @@ const about: About = {
           <>
             Worked in Scrum and Kanban: sprint planning, prioritisation, roadmaps and project plans,
             tracked in Microsoft Planner.
+          </>,
+        ],
+        images: [],
+      },
+      {
+        company: "UltimetaX",
+        timeframe: "Jan 2023 – Jan 2024",
+        role: "Business Analyst",
+        achievements: [
+          <>
+            Worked with stakeholders to gather, record and verify business needs, keeping them in line
+            with operational objectives.
+          </>,
+          <>
+            Built end-to-end workflows, process diagrams and ERDs to support system architecture,
+            database planning and user interface development.
+          </>,
+          <>
+            Wrote comprehensive user stories with explicit acceptance criteria to direct development
+            and testing.
+          </>,
+          <>Helped with UI design and prototyping, turning business requirements into user-friendly interfaces.</>,
+          <>
+            Supported UAT planning, test case development and defect tracking, analysing system gaps,
+            risks and improvement opportunities, and confirming functionality across environments.
+          </>,
+          <>
+            Facilitated cross-functional collaboration by clearly communicating requirements to
+            developers, designers and stakeholders.
           </>,
         ],
         images: [],
@@ -276,9 +364,14 @@ const about: About = {
         ],
       },
       {
-        title: "Design & tools",
-        description: <>Wireframes and UI concepts · Microsoft Planner · Visily.</>,
-        tags: [{ name: "Figma", icon: "figma" }],
+        title: "Design & documentation",
+        description: (
+          <>
+            Wireframes and UI concepts · clear written documentation, reports and presentations for
+            stakeholders.
+          </>
+        ),
+        tags: [],
         images: [],
       },
     ],
@@ -311,4 +404,4 @@ const gallery: Gallery = {
   images: [],
 };
 
-export { person, social, newsletter, home, about, blog, work, gallery, portfolioPdf };
+export { person, social, newsletter, home, about, blog, work, gallery, portfolioPdf, tools };

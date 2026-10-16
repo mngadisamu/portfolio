@@ -125,3 +125,76 @@ export function Split({
     </Row>
   );
 }
+
+export type ToolGroup = { title: string; items: { name: string; icon?: string }[] };
+
+/** Grouped tool chips with icons. `compact` drops the group cards for a single wall of chips. */
+export function ToolGrid({ groups, compact = false }: { groups: ToolGroup[]; compact?: boolean }) {
+  if (compact) {
+    return (
+      <Row fillWidth gap="8" wrap>
+        {groups.flatMap((g) =>
+          g.items.map((t) => (
+            <Row
+              key={`${g.title}-${t.name}`}
+              gap="8"
+              vertical="center"
+              paddingX="12"
+              paddingY="8"
+              radius="full"
+              background="surface"
+              border="neutral-alpha-medium"
+            >
+              {t.icon && <Icon name={t.icon} size="s" onBackground="brand-medium" />}
+              <Text variant="label-default-s" onBackground="neutral-strong">
+                {t.name}
+              </Text>
+            </Row>
+          )),
+        )}
+      </Row>
+    );
+  }
+  return (
+    <Column fillWidth gap="12">
+      {groups.map((g) => (
+        <Column
+          key={g.title}
+          fillWidth
+          gap="12"
+          padding="m"
+          radius="l"
+          background="surface"
+          border="neutral-alpha-medium"
+        >
+          <Text
+            variant="label-strong-s"
+            onBackground="brand-medium"
+            style={{ textTransform: "uppercase", letterSpacing: "0.06em" }}
+          >
+            {g.title}
+          </Text>
+          <Row gap="8" wrap>
+            {g.items.map((t) => (
+              <Row
+                key={t.name}
+                gap="8"
+                vertical="center"
+                paddingX="12"
+                paddingY="8"
+                radius="full"
+                background="brand-alpha-weak"
+                border="brand-alpha-medium"
+              >
+                {t.icon && <Icon name={t.icon} size="s" onBackground="brand-strong" />}
+                <Text variant="label-default-s" onBackground="neutral-strong">
+                  {t.name}
+                </Text>
+              </Row>
+            ))}
+          </Row>
+        </Column>
+      ))}
+    </Column>
+  );
+}

@@ -33,6 +33,11 @@ import {
   PiGridFourDuotone,
   PiBookBookmarkDuotone,
   PiImageDuotone,
+  PiMicrosoftWordLogo,
+  PiMicrosoftExcelLogo,
+  PiMicrosoftPowerpointLogo,
+  PiKanban,
+  PiChartLineUp,
 } from "react-icons/pi";
 
 import {
@@ -50,6 +55,17 @@ import {
   SiSqlite,
   SiGit,
   SiVite,
+  SiJira,
+  SiGithubactions,
+  SiAmazons3,
+  SiApache,
+  SiJupyter,
+  SiMysql,
+  SiVercel,
+  SiPlotly,
+  SiKaggle,
+  SiNodedotjs,
+  SiGoogle,
 } from "react-icons/si";
 
 import { FaDiscord, FaGithub, FaLinkedin, FaX, FaThreads, FaInstagram, FaXTwitter, FaFacebook, FaPinterest, FaWhatsapp, FaReddit, FaTelegram, } from "react-icons/fa6";
@@ -110,6 +126,22 @@ export const iconLibrary: Record<string, IconType> = {
   sqlite: SiSqlite,
   git: SiGit,
   vite: SiVite,
+  jira: SiJira,
+  githubActions: SiGithubactions,
+  awsS3: SiAmazons3,
+  apache: SiApache,
+  jupyter: SiJupyter,
+  mysql: SiMysql,
+  vercel: SiVercel,
+  plotly: SiPlotly,
+  kaggle: SiKaggle,
+  nodejs: SiNodedotjs,
+  google: SiGoogle,
+  word: PiMicrosoftWordLogo,
+  excel: PiMicrosoftExcelLogo,
+  powerpoint: PiMicrosoftPowerpointLogo,
+  kanban: PiKanban,
+  chartLine: PiChartLineUp,
 };
 
 export type IconLibrary = typeof iconLibrary;
