@@ -1,20 +1,96 @@
 ---
 title: "AI Business Analyst Assistant"
 publishedAt: "2026-10-02"
-summary: "An AI assistant that supports business analysis work — Week 2 project on the CAPACITI x Clickatell AI Bootcamp."
-link: "https://github.com/mngadisamu/ai-business-analyst-assistant"
+role: "Prompt engineering · Product design · Evaluation"
+summary: "BA Assistant Studio turns a one-line stakeholder requirement into a full first draft of BA documentation, and is designed to flag gaps instead of inventing rules that look real."
+link: "https://gemini.google.com/share/adafacb07650?skid=b4665db0-ff25-4abc-80de-cdfa9f6d6e33"
+repo: "https://github.com/mngadisamu/ai-business-analyst-assistant"
+tags: ["Prompt engineering", "Gemini API", "React", "TypeScript", "Vite", "User stories", "Acceptance criteria", "Test cases"]
 images:
   - "/images/projects/ai-business-analyst-assistant/cover.jpg"
+  - "/images/projects/ai-business-analyst-assistant/output.png"
+  - "/images/projects/ai-business-analyst-assistant/home.png"
+  - "/images/projects/ai-business-analyst-assistant/master-rules.png"
 ---
 
-## Overview
+<StatGrid items={[
+  { value: "1 → 6", label: "one requirement in, six BA outputs back" },
+  { value: "5", label: "clarification questions raised on a 9-word requirement" },
+  { value: "7", label: "checks in my evaluation rubric for the prompt" },
+  { value: "2", label: "real requirements tested and scored against the rubric" },
+]} />
 
-An AI assistant built for business analysis tasks, created in Week 2 of the CAPACITI x Clickatell AI Bootcamp — combining my BA background with generative AI.
+## The problem
 
-## Built with
+Business analysts spend hours turning short, vague requirements into user stories, acceptance criteria, test cases and stakeholder questions. AI can draft these in seconds, but left alone it fills gaps with plausible-sounding rules. **For a BA, an invented rule that looks real is worse than a gap that's flagged**, because it gets built.
 
-Google Gemini
+<Split
+  leftTitle="Generic AI chat"
+  left="Confidently fills in the blanks: picks a reset method, adds error codes, assumes leave types. It looks finished, but nobody actually asked for those rules."
+  rightTitle="BA Assistant Studio"
+  right="Drafts the documentation, labels every assumption, marks unknowns 'Requires clarification', and hands the analyst a list of questions to take back to stakeholders."
+/>
 
-## Code
+## The approach: build around a prompt, not a model
 
-[View the repository on GitHub](https://github.com/mngadisamu/ai-business-analyst-assistant)
+I designed a **master prompt** that works like a job description for the assistant:
+
+- **Role:** an assistant to the analyst, not a replacement. The analyst stays responsible for validating everything.
+- **Six outputs:** requirement analysis (needs, ambiguities, assumptions, risks), a user story, Given/When/Then acceptance criteria with positive and negative scenarios, a test-case table, clarification questions, and a quality check with review notes.
+- **Rules:** don't fabricate requirements, don't hide assumptions, prefer clarification over assumption, and keep everything traceable to the original requirement.
+- **Prompt Engineering Mode:** analyse and improve prompts using *Prompt → Test → Evaluate → Refine → Test Again → Final Prompt*.
+
+![The assistant's master rules: six outputs and a prompt engineering mode](/images/projects/ai-business-analyst-assistant/master-rules.png)
+
+## Example: "Admin users need to reset user passwords securely"
+
+From that one line, the assistant returned a requirement analysis, a user story, **5 acceptance criteria, 4 test cases and 5 clarification questions**. Crucially, it flagged *"securely"* as undefined and marked the reset method *Requires clarification* instead of choosing one.
+
+<StoryCard
+  label="The user story it generated (verbatim)"
+  asA="Admin user,"
+  iWant="to trigger a secure password reset for a specific user account,"
+  soThat="I can help users regain access to the system without compromising their security or exposing their credentials."
+/>
+
+![BA Assistant Studio showing a requirement analysis for the password-reset requirement](/images/projects/ai-business-analyst-assistant/output.png)
+
+## How I built it
+
+I described what I wanted to Gemini in Google AI Studio and iterated, debugging like I would with a dev team:
+
+1. **First attempt only echoed the master prompt back.** I clarified the requirement: a working chatbot, not a document. It generated a web app.
+2. **The chatbot didn't respond.** Fix: an API-key settings dialog in the sidebar, with errors shown inside the chat instead of failing silently.
+3. **A `marked is not defined` error.** Fix: replace the external markdown library with an internal formatter.
+
+The result is a React + TypeScript + Vite app on the Gemini API, with saved sessions, quick templates, dark mode and Markdown export of any analysis.
+
+![BA Assistant Studio home screen](/images/projects/ai-business-analyst-assistant/home.png)
+
+## Evaluating a prompt like a requirement
+
+I didn't just eyeball the output. I scored it against a checklist on two real requirements (password reset, and online leave applications):
+
+<Table data={{
+  headers: [
+    { content: "Check", key: "c" },
+    { content: "Password reset", key: "p" },
+    { content: "Leave application", key: "l" },
+  ],
+  rows: [
+    ["Assumptions are labelled", "Met", "Partly"],
+    ["Unknowns marked 'Requires clarification'", "Met", "Mostly met"],
+    ["Clarification questions are relevant", "Met", "Met"],
+    ["No invented requirements", "Partly", "Partly"],
+    ["Test cases trace to acceptance criteria", "Partly", "Partly"],
+    ["Output structure matches the master prompt", "Partly", "Partly"],
+  ],
+}} />
+
+**What it showed:** the assistant is reliable at the core BA job of naming gaps and asking the right questions. But the same three weaknesses showed up in both runs: specifics added to acceptance criteria (a "403 Forbidden" error, audit-log fields), test cases with no matching criterion, and merged output sections. Those are the documented targets for the next prompt revision.
+
+## What I learned
+
+- Writing "do not invent" into a prompt **reduces** invention but doesn't remove it, so a person must always review the output.
+- Explicit rules like *mark unknowns "Requires clarification"* make gaps visible, which is exactly what a BA needs.
+- A prompt can be tested like a requirement: against a checklist, on the same inputs, before and after a change.

@@ -1,20 +1,85 @@
 ---
 title: "Sentiment Analysis Tool"
-publishedAt: "2026-10-09"
-summary: "A Streamlit app that analyses the sentiment of text — Week 3 project on the CAPACITI x Clickatell AI Bootcamp, live on Streamlit Community Cloud."
-link: "https://github.com/mngadisamu/sentiment-analysis-tool"
+publishedAt: "2026-10-07"
+role: "Data analysis · Build · Testing · Reporting"
+summary: "Upload any CSV of comments, tweets or reviews and get a cleaned dataset, a sentiment dashboard and a written report, with every cleaning step logged and every number explainable."
+link: "https://samukelo-sentiment-analysis-tool.streamlit.app/"
+repo: "https://github.com/mngadisamu/sentiment-analysis-tool"
+tags: ["Python", "pandas", "VADER", "Streamlit", "Plotly", "Data cleaning", "Reporting"]
 images:
   - "/images/projects/sentiment-analysis-tool/cover.jpg"
+  - "/images/projects/sentiment-analysis-tool/dashboard.png"
 ---
 
-## Overview
+<StatGrid items={[
+  { value: "14,604", label: "airline tweets cleaned, scored and analysed" },
+  { value: "55% → 65.9%", label: "agreement with human labels after tuning" },
+  { value: "51% → 69%", label: "of truly negative tweets now caught" },
+  { value: "11", label: "report sections you can tick on or off" },
+]} />
 
-A sentiment analysis web app built in Week 3 of the CAPACITI x Clickatell AI Bootcamp and deployed live on Streamlit Community Cloud.
+## The problem
 
-## Built with
+Businesses sit on piles of written feedback (tweets, reviews, survey answers) but turning it into something a manager can act on usually means a data person, a notebook and a lot of manual cleaning. I wanted a tool a non-technical stakeholder could use: **upload a CSV, get answers, download a report.** And it had to work on *any* file with a column of text, not just the dataset I tested it on.
 
-Python · Streamlit · Streamlit Community Cloud
+<Split
+  leftTitle="Without the tool"
+  left="Messy spreadsheets, duplicate rows, inconsistent spellings, and someone reading comments one by one to guess the mood."
+  rightTitle="With the tool"
+  right="A cleaned copy with a change log, every comment labelled positive / neutral / negative, charts by group and over time, and a report ready to share."
+/>
 
-## Code
+## How it works
 
-[View the repository on GitHub](https://github.com/mngadisamu/sentiment-analysis-tool)
+1. **Check the file:** counts rows, duplicates, blanks and missing values, and warns if the chosen column doesn't look like real text.
+2. **Clean a copy:** tidies spaces, merges spelling variants ("late flight" vs "Late Flight"), drops blanks and duplicates, and reads dates. The original is never touched, and every change is logged with how many rows it affected.
+3. **Score:** each text is scored with VADER from -1 to +1. 0.05 or more is positive, -0.05 or less is negative, anything between is neutral.
+4. **Explore:** a dashboard with the overall breakdown, sentiment over time, sentiment by group (e.g. airline) and the top reasons for negative texts.
+5. **Report:** tick which of 11 sections to include and download it as HTML or Markdown, along with the cleaned data and results.
+
+![Dashboard showing 14,604 airline tweets: 32.7% positive, 18.3% neutral, 49.0% negative](/images/projects/sentiment-analysis-tool/dashboard.png)
+
+## Tuning it, one change at a time
+
+Plain VADER was too positive about complaints: it doesn't know a "cancelled" flight is bad news, and it scores "help" and "please" as positive even when someone is begging for help. I tested each fix on its own and kept only what earned its place:
+
+<Table data={{
+  headers: [
+    { content: "Change tried", key: "c" },
+    { content: "Agreement with labels", key: "a" },
+    { content: "Kept?", key: "k" },
+  ],
+  rows: [
+    ["Plain VADER", "55.0%", "Starting point"],
+    ["Turn leftover web codes (e.g. for the & sign) into characters", "55.0%", "Yes, cleaner word counts"],
+    ["Treat thanks / help / please as neutral", "55.9%", "No: it lost 20 points on positive tweets"],
+    ["Add 36 complaint words + help/please neutral", "≈65%", "Yes"],
+    ["Adjust the positive/negative thresholds", "+0.6 at most", "No: not worth another setting"],
+  ],
+}} />
+
+The result is **Customer messages mode**, on by default and switchable off for non-complaint text.
+
+## What it found in the airline data
+
+- **Overall:** 32.7% positive, 18.3% neutral, 49.0% negative across 14,604 tweets.
+- **Worst airline:** US Airways, with 60.9% negative tweets. Delta (36.2%) and Virgin America (33.3%, but only 504 tweets) were lowest.
+- **Why people complained:** customer service was the single biggest reason (31.2%), though late and cancelled flights together made up slightly more (32.8%).
+- **Trend:** negativity climbed from 40.3% on 18 Feb to a peak of 57.3% on 22 Feb 2015 as tweet volume doubled.
+
+## Design decisions
+
+- **One core, two front ends:** the Streamlit dashboard and a command-line script call the same cleaning, scoring and report code, so they always give the same numbers.
+- **Guess, then confirm:** the tool guesses which columns hold the text, group, reason, labels and dates, and the user can correct any guess. That's what makes it work on any dataset.
+- **Explainable over clever:** I chose a rule-based method over a trained model because it needs no training data, every score can be traced to the words in the text, and it runs on a free hosting plan.
+- **Safe and repeatable:** the report is written from templates filled with the numbers, not by an AI, so the same data always gives the same report. Text is escaped so a tweet containing code can't break the page.
+- **Honest about small numbers:** the report adds a caution when a group or day has too few texts to trust.
+
+## Honest limits
+
+VADER reads words, so it misses sarcasm and slang, and it works in English only. Even tuned, it rates fewer tweets negative (49%) than the human labels (about 63%), so it's best for **comparing** groups and days rather than stating absolute shares. And because I wrote the complaint word list after looking at this dataset, expect a smaller gain on other data. Next step: test a trained model against the 65.9% and validate on a second labelled dataset.
+
+## Read more
+
+- [Insights report (PDF)](/docs/sentiment-insights-report.pdf): what the tool found in the airline tweets
+- [Technical explanation (PDF)](/docs/sentiment-technical-explanation.pdf): how it works, why a rule-based method, and its limits

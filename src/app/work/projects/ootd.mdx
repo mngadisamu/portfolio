@@ -1,34 +1,83 @@
 ---
-title: "#OOTD — AI Personal Stylist"
+title: "#OOTD: AI Personal Stylist"
 publishedAt: "2026-09-28"
+role: "Product definition · User flows · Prototyping"
+summary: "An AI stylist that builds outfits from the clothes you already own, for any occasion or vibe, and explains why each look works."
 link: "https://gemini.google.com/share/bfb8b44fc16a?skid=f0551d75-2f91-4471-bc0f-d478a1a0c7d7"
-summary: "An AI fashion stylist app that builds outfits from your real wardrobe — by occasion, weather and personal style — and explains why each look works."
+repo: "https://github.com/mngadisamu/ootd-ai-chatbot"
+tags: ["Product definition", "Google AI Studio", "Gemini API", "React", "TypeScript", "Vite", "Node.js"]
 images:
   - "/images/projects/ootd/cover.jpg"
+  - "/images/projects/ootd/ai-stylist.png"
+  - "/images/projects/ootd/wardrobe.png"
+  - "/images/projects/ootd/inspiration-hub.png"
 ---
 
-## Overview
+<StatGrid items={[
+  { value: "8", label: "core features, from closet to wear logs" },
+  { value: "4", label: "wardrobe categories: clothing, shoes, bags, accessories" },
+  { value: "16", label: "preset occasions in the spec, plus any custom one in plain words" },
+  { value: "1", label: "rule: only style what the user actually owns" },
+]} />
 
-**#OOTD (Outfit of the Day)** is an AI personal stylist built around the user's own digital closet. It's designed to feel like a visual Pinterest/Instagram-style app rather than a generic chatbot.
+## The problem
+
+"I have nothing to wear" usually means "I can't see what I have." Most styling apps suggest clothes you'd have to buy. I wanted the opposite: **an AI stylist that only works with your real wardrobe**, feels like a visual Pinterest/Instagram-style app rather than a corporate chatbot, and gets to know your taste over time.
 
 > "What's the vibe? Let's build your OOTD. ✨"
 
-## Key features
+## I started with the product, not the prompt
 
-- **Digital closet**: add clothes, shoes, bags and accessories by pasting a store link (image, brand, colour and price are pulled in) or by uploading a photo that the AI identifies and tags.
-- **AI styling engine**: generates complete outfits from what you actually own, considering colour and style compatibility, formality, occasion, weather and what you wore recently — and explains why the outfit works.
-- **Occasion-based styling**: preset occasions (corporate, interviews, date night, weddings, brunch, gym and more) or any custom occasion in plain language.
-- **Outfit cards**: save, wear, regenerate, or find similar inspiration.
-- **Always-on stylist chat** available anywhere in the app.
+Before prototyping, I wrote the product definition the way I would for a dev team: navigation, every screen, the closet categories, how items get in, how the styling engine should reason, and the experience on desktop, tablet and mobile.
+
+<StoryCard
+  label="From my product requirements"
+  asA="user getting dressed,"
+  iWant="to be warned when I'm about to repeat an outfit I wore recently,"
+  soThat="I can choose an alternative, while still being free to repeat a look on purpose."
+/>
+
+Some decisions I made along the way: **"last worn" reminders instead of cost-per-wear tracking** (simpler and more useful day to day), and styling that weighs **colour and style compatibility, formality, occasion, weather, recent wear and personal preference**, then explains *why* the outfit works.
+
+## How it works
+
+1. **Build your closet:** add items by pasting a store link (image, name, brand, colour and price are pulled in) or by uploading a photo the AI identifies and tags. Everything stays editable.
+2. **Ask the stylist:** in plain language ("I have an important work meeting today") or by picking an occasion: corporate, interviews, date night, weddings, brunch, gym, and more.
+3. **Get a look:** a complete outfit from your own items, as a visual card with the reasoning behind it.
+4. **Act on it:** save it, wear it today, regenerate, or find similar inspiration.
+5. **Learn:** wear logs and saved outfits feed the stylist, and your profile holds style notes and colour rules (e.g. *prefers beige, cream, dark neutrals; avoids neon*).
+
+![AI Stylist: a polished meeting outfit built from the user's own wardrobe, with the stylist's rationale](/images/projects/ootd/ai-stylist.png)
+
+## The features
+
+- **AI Stylist:** chat in plain language for outfit ideas for any occasion.
+- **Digital Wardrobe:** browse by category and add new items.
+- **Inspiration Hub:** curated style boards with a *Match Against My Wardrobe* button.
+- **Saved Outfits:** keep favourites and organise them into fashion boards.
+- **Wear Logs:** track what you wore, when, and for which occasion.
+- **Historic Chats:** every styling session is saved and can be restored.
+- **Profile & Settings:** style notes, colour rules, light/dark mode, accent colours, and a demo-data reset.
+
+![Digital wardrobe showing clothing items in a grid](/images/projects/ootd/wardrobe.png)
+
+![Inspiration Hub: curated looks with Match Against My Wardrobe](/images/projects/ootd/inspiration-hub.png)
+
+<Grid columns="2" gap="12" s={{ columns: 1 }} marginY="16">
+  <Media src="/images/projects/ootd/add-item.png" alt="Adding an item to the wardrobe" radius="m" enlarge border="neutral-alpha-medium" />
+  <Media src="/images/projects/ootd/saved-outfits.png" alt="Saved outfits" radius="m" enlarge border="neutral-alpha-medium" />
+  <Media src="/images/projects/ootd/wear-logs.png" alt="Wear logs" radius="m" enlarge border="neutral-alpha-medium" />
+  <Media src="/images/projects/ootd/settings-dark.png" alt="Settings in dark mode" radius="m" enlarge border="neutral-alpha-medium" />
+</Grid>
 
 ## Built with
 
-Gemini via Google AI Studio, synced to GitHub. Responsive across desktop, tablet and mobile.
+Prototyped in **Google AI Studio** with **Gemini**, then synced to GitHub: React + TypeScript on Vite, a small Node.js server, and the Gemini API. The API key lives in an environment file that is never committed.
 
-## Planned
+## What's next
 
-Pinterest inspiration matched against your closet ("you already own 4 pieces of this look"), outfit history grouped by occasion, repeat-outfit warnings, "last worn" reminders and preference learning.
+From the original spec, still to build: **Pinterest inspiration matched against your closet** ("you already own 4 pieces to recreate this look"), outfit history grouped by occasion, **repeat-outfit protection**, per-item wear stats, and a stylist that gradually learns your preferences from what you save, reject and wear, while you stay in control.
 
-## Try it
+## What I learned
 
-[Open #OOTD in Google AI Studio](https://gemini.google.com/share/bfb8b44fc16a?skid=f0551d75-2f91-4471-bc0f-d478a1a0c7d7)
+Being specific up front made the AI far more useful. A clear spec of screens, categories and rules gave Gemini something concrete to build, and made it easy to spot when the prototype drifted from what I'd defined. It's the same lesson as BA work: **the quality of the output depends on the quality of the requirements.**

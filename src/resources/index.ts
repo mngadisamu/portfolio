@@ -8,6 +8,7 @@ export {
   blog,
   work,
   gallery,
+  portfolioPdf,
 } from "./content";
 
 export {

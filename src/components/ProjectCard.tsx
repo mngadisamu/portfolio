@@ -7,6 +7,7 @@ import {
   Flex,
   Heading,
   SmartLink,
+  Tag,
   Text,
 } from "@once-ui-system/core";
 
@@ -19,6 +20,9 @@ interface ProjectCardProps {
   description: string;
   avatars: { src: string }[];
   link: string;
+  repo?: string;
+  role?: string;
+  tags?: string[];
 }
 
 export const ProjectCard: React.FC<ProjectCardProps> = ({
@@ -29,6 +33,9 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
   description,
   avatars,
   link,
+  repo,
+  role,
+  tags = [],
 }) => {
   return (
     <Column fillWidth gap="m">
@@ -48,11 +55,23 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
         gap="l"
       >
         {title && (
-          <Flex flex={5}>
+          <Column flex={5} gap="8">
+            {role && (
+              <Text variant="label-strong-s" onBackground="brand-medium" style={{ textTransform: "uppercase", letterSpacing: "0.06em" }}>
+                {role}
+              </Text>
+            )}
             <Heading as="h2" wrap="balance" variant="heading-strong-xl">
               {title}
             </Heading>
-          </Flex>
+            {tags.length > 0 && (
+              <Flex gap="8" wrap paddingTop="4">
+                {tags.map((t) => (
+                  <Tag key={t} size="s">{t}</Tag>
+                ))}
+              </Flex>
+            )}
+          </Column>
         )}
         {(avatars?.length > 0 || description?.trim() || content?.trim()) && (
           <Column flex={7} gap="16">
@@ -69,7 +88,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
                   style={{ margin: "0", width: "fit-content" }}
                   href={href}
                 >
-                  <Text variant="body-default-s">Read case study</Text>
+                  <Text variant="body-default-s" onBackground="brand-strong" style={{ fontWeight: 600 }}>Read the full case study</Text>
                 </SmartLink>
               )}
               {link && (
@@ -78,7 +97,16 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
                   style={{ margin: "0", width: "fit-content" }}
                   href={link}
                 >
-                  <Text variant="body-default-s">View project</Text>
+                  <Text variant="body-default-s">Try it live</Text>
+                </SmartLink>
+              )}
+              {repo && (
+                <SmartLink
+                  prefixIcon="github"
+                  style={{ margin: "0", width: "fit-content" }}
+                  href={repo}
+                >
+                  <Text variant="body-default-s">Code</Text>
                 </SmartLink>
               )}
             </Flex>

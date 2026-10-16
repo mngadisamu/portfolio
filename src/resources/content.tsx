@@ -8,10 +8,14 @@ const person: Person = {
   role: "Business Analyst",
   avatar: "/images/avatar.jpg",
   email: "mngadisamu1@gmail.com",
-  location: "Africa/Johannesburg", // Expecting the IANA time zone identifier, e.g., 'Europe/Vienna'
+  location: "Africa/Johannesburg", // IANA time zone, used for the local-time clock
+  locationLabel: "Johannesburg, South Africa", // what visitors see
   languages: [], // optional: Leave the array empty if you don't want to display languages
   locale: "en", // BCP 47 language tag for the HTML lang attribute, e.g., 'en', 'ja', 'zh-TW'
 };
+
+/** The downloadable PDF portfolio (in /public). */
+const portfolioPdf = "/Samukelo-Mngadi-Portfolio.pdf";
 
 const newsletter: Newsletter = {
   display: false,
@@ -47,27 +51,26 @@ const home: Home = {
   image: "/images/og/home.jpg",
   label: "Home",
   title: `${person.name} – Business Analyst`,
-  description: `Portfolio of ${person.name}, a business analyst working across requirements, process design, data and AI`,
-  headline: <>Turning messy business problems into clear, buildable requirements</>,
+  description: `${person.name} is a business analyst who turns business problems into requirements, and requirements into working products. Case studies: Tower (airline complaint triage), a sentiment analysis tool, an AI BA assistant, #OOTD and MICT SETA systems.`,
+  headline: <>I turn business problems into requirements, and requirements into working products.</>,
   featured: {
     display: true,
     title: (
       <Row gap="12" vertical="center">
-        <strong className="ml-4">Case Management System</strong>{" "}
+        <strong className="ml-4">Tower</strong>{" "}
         <Line background="brand-alpha-strong" vert height="20" />
         <Text marginRight="4" onBackground="brand-medium">
-          Featured work
+          Featured case study
         </Text>
       </Row>
     ),
-    href: "/work/case-management-system",
+    href: "/work/tower",
   },
   subline: (
     <>
-      I'm {person.firstName}, a business analyst and{" "}
-      <Text as="span" size="xl" weight="strong">Data Engineering Intern at CAPACITI</Text>. I bridge
-      stakeholders and developers <br /> with requirements, process maps and data models — and I
-      build AI prototypes on the side.
+      I'm {person.firstName}, a business analyst. I gather requirements, map processes and model
+      data, and I build AI-assisted prototypes so stakeholders can try an idea instead of just reading
+      about it.
     </>
   ),
 };
@@ -76,7 +79,7 @@ const about: About = {
   path: "/about",
   label: "About",
   title: `About – ${person.name}`,
-  description: `Meet ${person.name}, ${person.role} based in Johannesburg`,
+  description: `Meet ${person.name}, a business analyst based in Johannesburg, South Africa`,
   tableOfContent: {
     display: true,
     subItems: false,
@@ -93,13 +96,17 @@ const about: About = {
     title: "Introduction",
     description: (
       <>
-        {person.firstName} is a Johannesburg-based business analyst, with a Diploma in ICT in
-        Business Analysis from the Durban University of Technology, who turns vague business needs
-        into clear requirements, user stories and process flows that development teams can build
-        from. At MICT SETA, {person.firstName} worked between stakeholders and developers on case
-        management, onboarding and compliance, and property management systems, and is now on the CAPACITI Data
-        Engineering Programme and recently completed the CAPACITI x Clickatell AI Bootcamp, building
-        AI-powered tools end to end.
+        I'm a Johannesburg-based business analyst with a Diploma in ICT in Business Analysis from
+        the Durban University of Technology. I turn vague business needs into requirements, user
+        stories and process flows that developers can build from, and I test what gets built.
+        <br />
+        <br />
+        At MICT SETA I worked between stakeholders and developers on case management, onboarding
+        and verification, and property management systems. On the CAPACITI x Clickatell AI Bootcamp I
+        shipped a new AI tool every week, ending with Tower, an airline complaint triage assistant
+        with 81 automated tests and a person approving every reply. The thread through all of it:{" "}
+        <strong>write down the edge cases and limits before building, and show stakeholders
+        something real early.</strong>
       </>
     ),
   },
@@ -109,37 +116,48 @@ const about: About = {
     experiences: [
       {
         company: "CAPACITI",
-        timeframe: "Aug 2026 - Present",
+        timeframe: "Aug 2026 – Present",
         role: "Data Engineering Intern",
         achievements: [
-          <>Data Engineering Programme, building skills in data pipelines, modelling and analytics.</>,
+          <>Data Engineering Programme: data pipelines, data modelling and analytics.</>,
           <>
-            Completed the CAPACITI x Clickatell AI Bootcamp, shipping a new AI project each week —
-            including a sentiment analysis tool and an airline complaint triage assistant.
+            CAPACITI x Clickatell AI Bootcamp (Sep–Oct 2026): built and shipped four AI projects in
+            four weeks: #OOTD, an AI BA assistant, a sentiment analysis tool and Tower.
+          </>,
+          <>
+            Tower: wrote 10 user stories with 41 acceptance criteria, measured the classifier honestly
+            (62.7% vs a 31.7% baseline) and designed the product around that result, backed by 81
+            automated tests.
           </>,
         ],
         images: [],
       },
       {
         company: "MICT SETA",
-        timeframe: "Mar 2025 - Feb 2026",
+        timeframe: "Mar 2025 – Feb 2026",
         role: "Business Analyst Intern",
         achievements: [
           <>
-            Elicited, documented and validated requirements, acting as the link between business
-            stakeholders and the development team.
+            Elicited, documented and validated business requirements, acting as the link between
+            stakeholders and developers.
           </>,
           <>
-            Wrote user stories with positive and negative acceptance criteria, business rules,
-            process maps, system flows and ERDs / data models.
+            Wrote user stories with positive and negative acceptance criteria, and turned
+            requirements into development tasks.
+          </>,
+          <>Mapped processes and system flows, and built ERDs and data models.</>,
+          <>
+            Designed wireframes in Figma and Visily, and redesigned features when stakeholder
+            feedback showed the first solution didn't fit, including a vague dashboard brief I
+            reshaped after consulting other departments.
           </>,
           <>
-            Designed wireframes and UI concepts in Figma and Visily, and wrote test cases for staging,
-            UAT and demo testing, including defect reporting and retesting.
+            Tested what developers built (staging, UAT, demos), reported defects, retested fixes and
+            helped plan UAT.
           </>,
           <>
-            Contributed to sprint planning and roadmaps using Scrum, Kanban and Microsoft Planner
-            across the SDLC.
+            Worked in Scrum and Kanban: sprint planning, prioritisation, roadmaps and project plans,
+            tracked in Microsoft Planner.
           </>,
         ],
         images: [],
@@ -162,11 +180,11 @@ const about: About = {
       },
       {
         name: "CAPACITI – Data Engineering Programme",
-        description: <>2026 – present.</>,
+        description: <>August 2026 – present.</>,
       },
       {
         name: "CAPACITI x Clickatell AI Bootcamp",
-        description: <>September – October 2026. Four weekly individual AI projects.</>,
+        description: <>28 September – 23 October 2026. Four weekly individual AI projects.</>,
       },
     ],
   },
@@ -175,11 +193,12 @@ const about: About = {
     title: "Skills",
     skills: [
       {
-        title: "Requirements & analysis",
+        title: "Business analysis",
         description: (
           <>
-            Requirements elicitation and validation, user stories with acceptance criteria, business
-            rules, and stakeholder liaison.
+            Requirements elicitation and validation · user stories with positive and negative
+            acceptance criteria (Given/When/Then) · business rules · assumption logs · stakeholder
+            consultation and communication · turning requirements into development tasks.
           </>
         ),
         tags: [],
@@ -187,38 +206,79 @@ const about: About = {
       },
       {
         title: "Process & data modelling",
-        description: <>Process mapping, system flows, ERDs and data models.</>,
-        tags: [],
-        images: [],
-      },
-      {
-        title: "Wireframing & UI concepts",
-        description: <>Low- and mid-fidelity wireframes and UI concepts.</>,
-        tags: [
-          {
-            name: "Figma",
-            icon: "figma",
-          },
-        ],
-        images: [],
-      },
-      {
-        title: "Testing & delivery",
         description: (
           <>
-            Test cases, staging/UAT/demo testing, defect reporting and retesting. Sprint planning
-            and roadmaps with Scrum and Kanban across the SDLC.
+            Process maps and system flows · user journeys · ERDs and data models · role and
+            permission design (e.g. Tower's four roles across separate airlines).
           </>
         ),
         tags: [],
         images: [],
       },
       {
-        title: "AI prototyping",
+        title: "Testing & delivery",
         description: (
-          <>Building and deploying AI-powered apps with Python, Streamlit and Google AI Studio.</>
+          <>
+            Test cases · staging, UAT and demo testing · defect reporting and retesting · UAT
+            planning · Scrum, Kanban and the SDLC · sprint planning, prioritisation and roadmaps.
+          </>
         ),
         tags: [],
+        images: [],
+      },
+      {
+        title: "Building with AI",
+        description: (
+          <>
+            Prompt engineering and evaluation with Gemini · prototyping in Google AI Studio · text
+            classification with scikit-learn (TF-IDF + logistic regression) · responsible AI: human
+            approval, confidence thresholds, output guardrails, prompt-injection handling, PII
+            masking.
+          </>
+        ),
+        tags: [
+          { name: "Python", icon: "python" },
+          { name: "scikit-learn", icon: "scikitlearn" },
+          { name: "Gemini API", icon: "gemini" },
+          { name: "Streamlit", icon: "streamlit" },
+          { name: "React", icon: "react" },
+          { name: "TypeScript", icon: "typescript" },
+        ],
+        images: [
+          {
+            src: "/images/projects/tower/agent-draft.png",
+            alt: "Tower agent view with suggested reason, confidence, urgency and draft reply",
+            width: 16,
+            height: 14,
+          },
+        ],
+      },
+      {
+        title: "Data analysis",
+        description: (
+          <>
+            Data quality checks and cleaning with a change log · sentiment analysis (VADER) ·
+            dashboards and written insight reports · measuring accuracy honestly against a baseline.
+          </>
+        ),
+        tags: [
+          { name: "pandas", icon: "pandas" },
+          { name: "SQLite", icon: "sqlite" },
+          { name: "Git & GitHub", icon: "git" },
+        ],
+        images: [
+          {
+            src: "/images/projects/sentiment-analysis-tool/dashboard.png",
+            alt: "Sentiment dashboard for 14,604 airline tweets",
+            width: 16,
+            height: 10,
+          },
+        ],
+      },
+      {
+        title: "Design & tools",
+        description: <>Wireframes and UI concepts · Microsoft Planner · Visily.</>,
+        tags: [{ name: "Figma", icon: "figma" }],
         images: [],
       },
     ],
@@ -237,8 +297,8 @@ const blog: Blog = {
 const work: Work = {
   path: "/work",
   label: "Work",
-  title: `Projects – ${person.name}`,
-  description: `Business analysis and AI projects by ${person.name}`,
+  title: `Case studies – ${person.name}`,
+  description: `Business analysis and AI case studies by ${person.name}`,
   // Create new project pages by adding a new .mdx file to app/work/projects
   // All projects will be listed on the /home and /work routes
 };
@@ -251,4 +311,4 @@ const gallery: Gallery = {
   images: [],
 };
 
-export { person, social, newsletter, home, about, blog, work, gallery };
+export { person, social, newsletter, home, about, blog, work, gallery, portfolioPdf };

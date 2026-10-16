@@ -1,3 +1,4 @@
+import { StoryCard, StatGrid, Split } from "./Showcase";
 import { MDXRemote, MDXRemoteProps } from "next-mdx-remote/rsc";
 import React, { ReactNode } from "react";
 import { slugify as transliterate } from "transliteration";
@@ -25,6 +26,7 @@ import {
   List,
   ListItem,
   Line,
+  Tag,
 } from "@once-ui-system/core";
 
 type CustomLinkProps = React.AnchorHTMLAttributes<HTMLAnchorElement> & {
@@ -202,6 +204,10 @@ const components = {
   Icon,
   Media,
   SmartLink,
+  StoryCard,
+  StatGrid,
+  Split,
+  Tag,
 };
 
 type CustomMDXProps = MDXRemoteProps & {

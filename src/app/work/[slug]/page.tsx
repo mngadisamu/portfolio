@@ -14,6 +14,7 @@ import {
   Row,
   Avatar,
   Line,
+  Tag,
 } from "@once-ui-system/core";
 import { baseURL, about, person, work } from "@/resources";
 import { formatDate } from "@/utils/formatDate";
@@ -101,27 +102,43 @@ export default async function Project({
         </Text>
         <Heading variant="display-strong-m">{post.metadata.title}</Heading>
       </Column>
-      <Row marginBottom="32" horizontal="center">
-        <Row gap="16" vertical="center">
-          {post.metadata.team && <AvatarGroup reverse avatars={avatars} size="s" />}
-          <Text variant="label-default-m" onBackground="brand-weak">
-            {post.metadata.team?.map((member, idx) => (
-              <span key={idx}>
-                {idx > 0 && (
-                  <Text as="span" onBackground="neutral-weak">
-                    ,{" "}
-                  </Text>
-                )}
-                <SmartLink href={member.linkedIn}>{member.name}</SmartLink>
-              </span>
-            ))}
+      <Column maxWidth="s" gap="16" horizontal="center" align="center" marginBottom="24">
+        {post.metadata.role && (
+          <Text variant="label-strong-s" onBackground="brand-medium" style={{ textTransform: "uppercase", letterSpacing: "0.06em" }}>
+            {post.metadata.role}
           </Text>
-        </Row>
-      </Row>
+        )}
+        {post.metadata.summary && (
+          <Text variant="body-default-l" onBackground="neutral-weak" wrap="balance">
+            {post.metadata.summary}
+          </Text>
+        )}
+        {post.metadata.tags && post.metadata.tags.length > 0 && (
+          <Row gap="8" wrap horizontal="center">
+            {post.metadata.tags.map((t) => (
+              <Tag key={t} size="m">{t}</Tag>
+            ))}
+          </Row>
+        )}
+        {(post.metadata.link || post.metadata.repo) && (
+          <Row gap="12" wrap horizontal="center" paddingTop="8">
+            {post.metadata.link && (
+              <Button href={post.metadata.link} variant="primary" size="m" suffixIcon="arrowUpRightFromSquare">
+                Try it live
+              </Button>
+            )}
+            {post.metadata.repo && (
+              <Button href={post.metadata.repo} variant="secondary" size="m" prefixIcon="github">
+                View the code
+              </Button>
+            )}
+          </Row>
+        )}
+      </Column>
       {post.metadata.images.length > 0 && (
         <Media priority aspectRatio="16 / 9" radius="m" alt="image" src={post.metadata.images[0]} />
       )}
-      <Column style={{ margin: "auto" }} as="article" maxWidth="xs">
+      <Column style={{ margin: "auto" }} as="article" maxWidth="s">
         <CustomMDX source={post.content} />
       </Column>
       <Column fillWidth gap="40" horizontal="center" marginTop="40">

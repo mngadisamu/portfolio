@@ -1,32 +1,64 @@
 ---
-title: "Onboarding & Compliance Platform"
+title: "Onboarding & Verification Platform"
 publishedAt: "2026-02-27"
-summary: "Requirements for a platform that onboards employees, suppliers/contractors and beneficiaries — with identity, KYC/AML and background verification built into the flow, plus HR dashboards, leave and PMDS."
+role: "Business Analyst Intern · MICT SETA"
+summary: "One platform to onboard three very different groups (employees, suppliers/contractors and beneficiaries), each with its own identity, compliance and background checks, plus HR dashboards, leave and performance processes."
+tags: ["Requirements analysis", "KYC / AML", "Process mapping", "ERDs & data models", "API integration research", "Wireframing", "HR workflows"]
 images:
   - "/images/projects/onboarding-compliance-platform/cover.jpg"
 ---
 
-## Overview
-
 **Timeframe:** 10 March 2025 – 27 February 2026 · MICT SETA
 
-A single platform at MICT SETA for onboarding three very different groups — employees, suppliers/contractors, and beneficiaries — each with its own compliance and verification needs.
+<Feedback variant="info" title="A note on visuals" description="The documents, wireframes and screens from this project belong to MICT SETA, so they aren't shown here. This case study focuses on scope and how I approached it." marginBottom="24" />
 
-## Scope
+<StatGrid items={[
+  { value: "3", label: "onboarding journeys: employees, suppliers/contractors, beneficiaries" },
+  { value: "7", label: "types of verification check in scope" },
+  { value: "3", label: "HR areas: dashboards, leave, performance (PMDS)" },
+]} />
 
-- **Onboarding journeys** for employees, suppliers/contractors and beneficiaries.
-- **Verification checks**: identity, KYC/AML, address, criminal, financial, citizenship and SAQA qualification checks.
-- **HR features**: HR dashboards, leave management and PMDS (performance management).
-- **Integrations**: researched the third-party APIs needed to run verification checks automatically.
+## The challenge
+
+Each group being onboarded needs different information and different checks, and every check has to be traceable for compliance. The platform had to handle all three journeys without becoming three separate systems, and plug into outside verification services.
+
+## Scope I analysed
+
+<Table data={{
+  headers: [
+    { content: "Area", key: "a" },
+    { content: "What it covered", key: "c" },
+  ],
+  rows: [
+    ["Onboarding journeys", "Employees, suppliers/contractors and beneficiaries"],
+    ["Verification checks", "Identity (KYC/AML), address, criminal, financial, citizenship and SAQA qualification checks"],
+    ["HR", "HR dashboards, leave workflows and PMDS performance processes"],
+    ["Integrations", "Research into third-party verification APIs that could plug into the platform"],
+  ],
+}} />
 
 ## What I did
 
-- Elicited and documented requirements with the business and validated them with stakeholders.
-- Mapped each onboarding journey and the system flows between the platform and verification services.
-- Built ERDs / data models for the people, documents and check results the platform needed to store.
-- Wrote user stories with positive and negative acceptance criteria, and the business rules behind each check.
-- Produced wireframes and UI concepts in Figma and Visily.
+1. **Elicited and validated requirements** with the business for each onboarding journey.
+2. **Mapped each journey** and the system flows between the platform and the verification services.
+3. **Modelled the data** with ERDs for the people, documents and check results the platform needed to store.
+4. **Wrote user stories with positive and negative acceptance criteria**, plus the business rules behind each check, so failure paths were as clear as happy paths.
+5. **Designed wireframes and UI concepts** in Figma and Visily.
+6. **Researched API integrations** so the team understood how third-party verification could connect.
 
-## Skills used
+## Deliverables
 
-Requirements analysis · Process & system flow mapping · Data modelling · API integration research · Wireframing
+<Row gap="8" wrap marginY="16">
+  <Tag size="l">Requirements specification</Tag>
+  <Tag size="l">Journey & process maps</Tag>
+  <Tag size="l">System flows</Tag>
+  <Tag size="l">ERDs / data models</Tag>
+  <Tag size="l">User stories (+/− acceptance criteria)</Tag>
+  <Tag size="l">Business rules</Tag>
+  <Tag size="l">Wireframes (Figma, Visily)</Tag>
+  <Tag size="l">API integration research</Tag>
+</Row>
+
+## What I learned
+
+Compliance-heavy systems live or die on the *negative* paths: what happens when a check fails, comes back incomplete, or the external service is down. Writing negative acceptance criteria for each check made those paths explicit before development, not after.
