@@ -260,9 +260,29 @@ const about: About = {
         name: "Durban University of Technology (DUT)",
         description: (
           <>
-            Diploma in Information & Communications Technology in Business Analysis, awarded
-            December 2022. Distinctions in Business Analysis Project I & II, IT Project Management,
-            Business Fundamentals II, Financial Accounting I and Theory of Internal Auditing II.
+            <strong>Diploma in ICT in Business Analysis</strong> · awarded December 2022
+            <br />
+            <strong>Result:</strong> passed all 31 modules, with 6 distinctions. Top marks: Business
+            Analysis Project I (86%), IT Project Management (84%), Business Analysis Project II (80%),
+            Theory of Internal Auditing II (79%), Business Fundamentals II (78%) and Financial
+            Accounting I (75%).
+            <br />
+            <br />
+            <strong>What I studied:</strong>
+            <br />
+            · <strong>Business analysis:</strong> Business Analysis II and III, plus four practical
+            Business Analysis Projects (I, II, IIIA, IIIB).
+            <br />
+            · <strong>Systems & development:</strong> Applications Development I and II, Business
+            Information Systems I to III, Information Management II and Fundamentals of Computer
+            Security.
+            <br />
+            · <strong>Business & finance:</strong> Business Fundamentals I and II, Financial Accounting
+            I, Theory of Internal Auditing II, Computer Applications in Business and Finance II, and
+            Law for Life.
+            <br />
+            · <strong>Professional practice:</strong> IT Project Management, Theory of ICT Professional
+            Practice III, Entrepreneurial Spirit, and Information and Communication Literacy.
           </>
         ),
       },
