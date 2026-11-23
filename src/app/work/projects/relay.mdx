@@ -1,0 +1,59 @@
+---
+title: "Relay: AI Help Desk for a Logistics Company"
+publishedAt: "2026-11-23"
+role: "Team lead · Business analysis · Database, security and deployment"
+summary: "An internal help desk where staff send requests to HR, IT, Finance or Operations. Relay routes each one, drafts a reply that a person edits and sends, and keeps every decision in an audit log, with the rules for who may see what built into the database."
+link: "https://relay-gilt-nine.vercel.app"
+repo: "https://github.com/mngadisamu/relay"
+tags: ["Next.js", "React", "TypeScript", "Supabase", "Postgres", "Row-level security", "Google Gemini API", "scikit-learn", "Tailwind CSS", "Vercel", "Requirements", "User stories", "Acceptance criteria"]
+images:
+  - "/images/projects/relay/cover.png"
+---
+
+**Timeframe:** 19 Oct – 23 Nov 2026 · CAPACITI AI Bootcamp, with three teammates
+
+<StatGrid items={[
+  { value: "4", label: "departments that requests are routed to: HR, IT, Finance and Operations" },
+  { value: "15,579", label: "past tickets loaded to feed the dashboard, reports and forecast" },
+  { value: "38", label: "numbered database migrations that set the rules, functions and audit entries" },
+]} />
+
+## The challenge
+
+About 350 people at a logistics company send requests to four teams, and each request needs the right team, a clear reply and a record of what happened. The tool had to help the team without making decisions for it, and keep one company's data away from another's.
+
+## What I did
+
+1. **Wrote the requirements and user stories** for each sprint, with acceptance criteria as Given / When / Then scenarios that each one was tested against by hand.
+2. **Set the rules before the screens.** Who may see, take, assign, close and reopen a request, and what a manager can change, were written as database rules, not only as buttons on a page.
+3. **Built the AI parts to suggest and flag.** A classifier routes each request and marks low-confidence ones for a person to check. AI drafts are labelled, and an agent edits and sends them. Sensitive requests (harassment, self-harm, injury, security breaches) never go to the AI.
+4. **Added the management side:** a dashboard, weekly reports with a PDF, a 28-day workload forecast, an audit log, flagged replies, a risk report and approvals for purchases and leave.
+5. **Took it live** on Vercel with Supabase, and kept the main branch protected: every change went through a pull request, with a required review and checks.
+
+<StoryCard
+  label="A rule written before the screen"
+  asA="a manager,"
+  iWant="to see and change only the people in my own company and department,"
+  soThat="a person from another company or department never appears in my lists, even if I try to reach them."
+/>
+
+## Built with
+
+**Next.js 15** and **React** with **TypeScript**, styled with **Tailwind CSS** and shadcn/ui. **Supabase** holds the Postgres database, sign-in and row-level security on every table. The classifier is a TF-IDF and logistic regression model trained in **Google Colab** with scikit-learn, exported to JSON and run in TypeScript on the server, so no Python server runs in production. Drafts and summaries use the **Google Gemini API**, with the key kept on the server. Email notifications are built on **Resend** and are being switched on, and the site runs on **Vercel**.
+
+## Deliverables
+
+<Row gap="8" wrap marginY="16">
+  <Tag size="l">Requirements and user stories</Tag>
+  <Tag size="l">Acceptance criteria (Given / When / Then)</Tag>
+  <Tag size="l">Database rules and migrations</Tag>
+  <Tag size="l">Classifier and AI drafts</Tag>
+  <Tag size="l">Dashboard, reports and forecast</Tag>
+  <Tag size="l">Audit log and risk report</Tag>
+  <Tag size="l">Approvals</Tag>
+  <Tag size="l">Architecture document</Tag>
+</Row>
+
+## What I learned
+
+The hard problems were never the AI. They were permissions and sequence. Live testing found a manager's list that showed people from every company, and a new invitee who reached the two-step sign-in before choosing a password. Both were fixed in the database and the sign-in flow, and both were the kind of problem that only shows up when you test as each role. Writing the rules down first, and testing them as each person, is the habit I now start every project with.
