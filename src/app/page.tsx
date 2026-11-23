@@ -215,7 +215,7 @@ export default function Home() {
 
       {/* Featured */}
       <Column fillWidth gap="24">
-        <SectionTitle eyebrow="Featured case study" title="Tower: AI that suggests and flags, people who decide" />
+        <SectionTitle eyebrow="Featured case study" title="Relay: AI that routes and drafts, people who decide" />
         <Projects range={[1, 1]} />
       </Column>
 
