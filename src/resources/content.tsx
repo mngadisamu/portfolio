@@ -49,6 +49,7 @@ const tools: { title: string; items: { name: string; icon?: string }[] }[] = [
       { name: "Highcharts", icon: "chartLine" },
       { name: "Plotly", icon: "plotly" },
       { name: "Kaggle", icon: "kaggle" },
+      { name: "Google Colab" },
     ],
   },
   {
@@ -60,6 +61,11 @@ const tools: { title: string; items: { name: string; icon?: string }[] }[] = [
       { name: "TypeScript", icon: "typescript" },
       { name: "Vite", icon: "vite" },
       { name: "Node.js", icon: "nodejs" },
+      { name: "Next.js", icon: "nextjs" },
+      { name: "Supabase", icon: "supabase" },
+      { name: "Tailwind CSS" },
+      { name: "shadcn/ui" },
+      { name: "Resend" },
     ],
   },
   {
