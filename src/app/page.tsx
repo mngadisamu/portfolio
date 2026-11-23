@@ -265,12 +265,9 @@ export default function Home() {
           </Heading>
           <Text variant="body-default-m" onBackground="neutral-medium">
             Measuring Tower's classifier honestly (62.7%, against 31.7% for guessing) is what led me
-            to design it to suggest and flag rather than decide. Building Relay with my team proved
-            it again: the bugs that mattered were permissions and sequence, like a manager's list
-            showing people from every company, and a new person reaching the second sign-in step
-            before choosing a password. I take the same approach into requirements work: write down
-            the rules and edge cases before building, test as each role, and show stakeholders
-            something real early.
+            to design it to suggest and flag rather than decide. I take the same approach into
+            requirements work: write down the edge cases and limits before building, and show
+            stakeholders something real early.
           </Text>
         </Column>
       </Column>
