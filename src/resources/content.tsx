@@ -44,6 +44,7 @@ const tools: { title: string; items: { name: string; icon?: string }[] }[] = [
       { name: "Jupyter Notebook", icon: "jupyter" },
       { name: "MySQL", icon: "mysql" },
       { name: "SQLite", icon: "sqlite" },
+      { name: "PostgreSQL" },
       { name: "pandas", icon: "pandas" },
       { name: "scikit-learn", icon: "scikitlearn" },
       { name: "Highcharts", icon: "chartLine" },
@@ -116,7 +117,7 @@ const home: Home = {
   image: "/images/og/home.jpg",
   label: "Home",
   title: `${person.name} – Business Analyst`,
-  description: `${person.name} is a business analyst who turns business problems into requirements, and requirements into working products. Case studies: Tower (airline complaint triage), a sentiment analysis tool, an AI BA assistant, #OOTD and MICT SETA systems.`,
+  description: `${person.name} is a business analyst who turns business problems into requirements, and requirements into working products. Case studies: Tower (airline complaint triage), a sentiment analysis tool, an AI BA assistant, #OOTD, Relay (a help desk I led the business analysis on) and MICT SETA systems.`,
   headline: <>I turn business problems into requirements, and requirements into working products.</>,
   featured: {
     display: true,
@@ -169,7 +170,7 @@ const about: About = {
         At UltimetaX and MICT SETA I worked between stakeholders and developers, most recently on MICT SETA's case management, onboarding
         and verification, and property management systems. On the CAPACITI x Clickatell AI Bootcamp I
         shipped a new AI tool every week, ending with Tower, an airline complaint triage assistant
-        with 89 automated tests and a person approving every reply. The thread through all of it:{" "}
+        with 89 automated tests and a person approving every reply. Then, with three teammates, I was team lead and business analyst on Relay, a help desk for a logistics company that is now live. The thread through all of it:{" "}
         <strong>write down the edge cases and limits before building, and show stakeholders
         something real early.</strong>
       </>
@@ -193,6 +194,11 @@ const about: About = {
             Tower: wrote 10 user stories with 41 acceptance criteria, measured the classifier honestly
             (62.7% vs a 31.7% baseline) and designed the product around that result, backed by 89
             automated tests.
+          </>,
+          <>
+            Relay (Oct–Nov 2026): team lead and business analyst on an internal help desk for a
+            logistics company, built with three teammates. Wrote the requirements, designed the
+            database rules and security, and took it live on Vercel.
           </>,
         ],
         images: [],

@@ -163,7 +163,7 @@ export default function Home() {
         <StatGrid
           items={[
             { value: "2+ yrs", label: "of business analysis at UltimetaX and MICT SETA" },
-            { value: "4 in 4", label: "AI tools built and shipped in four weeks" },
+            { value: "5", label: "products built and shipped: four AI tools in four weeks, plus Relay with my team" },
             { value: "41", label: "acceptance criteria written before coding Tower" },
             { value: "89", label: "automated tests keeping Tower honest" },
           ]}
@@ -260,17 +260,14 @@ export default function Home() {
             The lesson I keep
           </Text>
           <Heading as="p" variant="heading-strong-xl" wrap="balance">
-            “The AI was the easy part. The hard work was everything around it: who may see what,
-            what happens when the model is unsure, and how a customer follows up.”
+            “The rules were the hard part. The bugs that mattered were about who may see what and the
+            order things happen in, and they only showed up when I tested as each role.”
           </Heading>
           <Text variant="body-default-m" onBackground="neutral-medium">
-            Measuring Tower's classifier honestly (62.7%, against 31.7% for guessing) is what led me
-            to design it to suggest and flag rather than decide. Building Relay with my team proved
-            it again: the bugs that mattered were permissions and sequence, like a manager's list
-            showing people from every company, and a new person reaching the second sign-in step
-            before choosing a password. I take the same approach into requirements work: write down
-            the rules and edge cases before building, test as each role, and show stakeholders
-            something real early.
+            On Relay, a manager's list once showed people from every company, and a new invitee could
+            reach the two-step sign-in before choosing a password. Now I write the rules, the edge cases
+            and the order of each step down before building, and I test every role by hand before I call
+            a feature done.
           </Text>
         </Column>
       </Column>
