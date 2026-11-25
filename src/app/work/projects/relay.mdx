@@ -7,12 +7,12 @@ link: "https://relay-gilt-nine.vercel.app"
 repo: "https://github.com/mngadisamu/relay"
 tags: ["Next.js", "React", "TypeScript", "Supabase", "PostgreSQL", "Row-level security", "Google Gemini API", "scikit-learn", "Tailwind CSS", "Vercel", "Requirements", "User stories", "Acceptance criteria"]
 images:
-  - "/images/projects/relay/cover.jpg"
-  - "/images/projects/relay/home.png"
-  - "/images/projects/relay/dashboard.png"
-  - "/images/projects/relay/submit.png"
-  - "/images/projects/relay/tickets.png"
-  - "/images/projects/relay/admin.png"
+  - "/images/projects/relay/cover-relay-blue.jpg"
+  - "/images/projects/relay/ticket.jpg"
+  - "/images/projects/relay/dashboard.jpg"
+  - "/images/projects/relay/tickets.jpg"
+  - "/images/projects/relay/approvals.jpg"
+  - "/images/projects/relay/admin.jpg"
 ---
 
 **Timeframe:** 19 Oct 2026 – present (showcase in progress) · CAPACITI AI Bootcamp (8 weeks, two-week sprints), with three teammates
@@ -28,7 +28,7 @@ images:
 
 About 350 people at a logistics company send requests to four teams, and each request needs the right team, a clear reply and a record of what happened. The tool had to help the team without making decisions for it, and keep one company's data away from another's.
 
-![Relay home page: sign-in, and a diagram of requests routed to HR, IT, Finance and Operations](/images/projects/relay/home.png)
+![Relay home page: requests from the office, a site and the road are sorted by Relay and sent to HR, IT, Finance or Operations](/images/projects/relay/home.jpg)
 
 <StoryCard
   label="A rule written before the screen"
@@ -43,26 +43,28 @@ Before building, I wrote the user stories with Given / When / Then acceptance cr
 
 ## How it works
 
-1. **Submit a request:** staff choose a subject, depot and urgency. A classifier routes it to a department. A fixed set of rules marks sensitive requests (harassment, self-harm, injury, security breaches), and those never go to the AI.
-2. **Take and answer:** an agent takes the ticket, edits an AI draft in the tone they choose, and sends it. Drafts are labelled, and only the assigned agent can send a reply.
-3. **Track it:** managers assign, confirm, close and reopen tickets, and staff see the status of each request in plain words.
-4. **Watch the numbers:** a dashboard, weekly reports with a PDF and a workload forecast show what is happening in each department.
-5. **Check the AI:** an audit log records every AI decision and every human change, with flagged replies and a risk report for compliance.
+_The screenshots show Relay with sample data for Kopano Freight, the fictional company it was built for._
 
-![Manager dashboard: ticket counts, average hours to first reply, and an AI summary written from the numbers](/images/projects/relay/dashboard.png)
+**1. Staff send a request.** They write what they need and choose their depot and how urgent it is. A classifier sends it to a department. Fixed rules mark sensitive requests (harassment, self-harm, injury, a hacked account), and those never go to the AI.
 
-## The features
+![Staff form for a new request, with subject, details, depot and urgency](/images/projects/relay/submit.jpg)
 
-- **Staff:** submit a request with a depot and urgency, then follow it under My requests.
-- **Agents:** an inbox with a Mine filter, a ticket view and a template library.
-- **Managers:** a dashboard, forecast, approvals for purchases and leave, reports and Manage users.
-- **Compliance:** the audit log, flagged replies and the risk report.
-- **Platform admins:** create companies, add each company's first system admin, and see each company's people, but never its tickets.
+**2. An agent answers it.** The agent opens the ticket and gets an AI draft in the tone they choose, labelled as AI-drafted. They edit it and send it themselves. The routing panel shows what the AI chose and how sure it was, and the agent can move the ticket if it is wrong.
+
+![Ticket view: the request on the left, an editable AI-drafted reply on the right, and the AI's routing choice with 91% confidence](/images/projects/relay/ticket.jpg)
+
+**3. Managers keep it moving.** They see every ticket by priority and status, with sensitive ones tagged, and approve purchases over R5,000 and all leave. Nobody decides their own request.
 
 <Grid columns="2" gap="12" s={{ columns: 1 }} marginY="16">
-  <Media src="/images/projects/relay/submit.png" alt="Staff form for a new request, with subject, depot and urgency" radius="m" enlarge border="neutral-alpha-medium" />
-  <Media src="/images/projects/relay/tickets.png" alt="Manager ticket list, filtered by status, with sensitive tags" radius="m" enlarge border="neutral-alpha-medium" />
+  <Media src="/images/projects/relay/tickets.jpg" alt="Ticket list: priority, subject, reference, depot, status and who it is assigned to, with a Sensitive tag on one request" radius="m" enlarge border="neutral-alpha-medium" />
+  <Media src="/images/projects/relay/approvals.jpg" alt="Approvals: a R6,400 tyre purchase and a leave request, each with Approve and Decline" radius="m" enlarge border="neutral-alpha-medium" />
 </Grid>
+
+**4. Everyone watches the numbers.** The dashboard shows tickets, reply times, open tickets and how many needed a check, with an AI summary written only from those numbers. Weekly reports, a PDF and a workload forecast build on the same figures.
+
+![Manager dashboard: 634 tickets, 6.4 hours to first reply, 33 open, and an AI summary of the period](/images/projects/relay/dashboard.jpg)
+
+**5. Compliance checks the AI.** An audit log records every AI decision and every human change, with flagged replies and a risk report.
 
 ## Keeping companies apart
 
@@ -70,7 +72,12 @@ Relay started as one company's help desk and grew to eight companies on one syst
 
 I wrote the fix as one reviewed migration. Every one of those jobs now checks the company itself, and reports and summaries are kept per company. I tested it on the demo database with a second company inside a transaction that was rolled back, so nothing was left behind. I also locked a demo-only reset function on the live database, because it would have cleared every company's open tickets.
 
-![Platform admin page: companies on Relay, with counts and a form to add a company (sample data)](/images/projects/relay/admin.png)
+I also redesigned the platform admin pages, where Relay's own team adds companies and their first admin. They show each company's people, and never its tickets.
+
+<Grid columns="2" gap="12" s={{ columns: 1 }} marginY="16">
+  <Media src="/images/projects/relay/admin.jpg" alt="Platform admin: eight companies with their people counts, platform numbers and a form to create a company" radius="m" enlarge border="neutral-alpha-medium" />
+  <Media src="/images/projects/relay/admin-company.jpg" alt="One company's agents in a table with department, depot and Active or Removed status, and a form to invite a system admin" radius="m" enlarge border="neutral-alpha-medium" />
+</Grid>
 
 ## Built with
 
@@ -82,4 +89,4 @@ Automatic assignment and urgent escalation are now live. Next: switch on email n
 
 ## What I learned
 
-The hard problems were never the AI. They were permissions and sequence. Live testing found a manager's list that showed people from every company, and a new invitee who reached the two-step sign-in before choosing a password. Both were fixed in the database and the sign-in flow, and both only showed up when I tested as each role. Writing the rules down first, and testing them as each person, is the habit I now start every project with.
+The hard problems were never the AI. They were about who can see and change what, and the order things happen in. Testing as each role found a manager's list that showed people from every company, and a new person who reached two-step sign-in before choosing a password. The audit found scheduled jobs that counted every company's tickets together. Now I write the rules down first, test as every role, and check anything that runs with nobody signed in.
