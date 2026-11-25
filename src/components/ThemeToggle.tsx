@@ -8,12 +8,15 @@ export const ThemeToggle: React.FC = () => {
   const [mounted, setMounted] = useState(false);
   const [currentTheme, setCurrentTheme] = useState("light");
 
+  // Reading the theme from the page after it loads is what this effect is for (it isn't known on the server).
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
     setCurrentTheme(document.documentElement.getAttribute("data-theme") || "light");
   }, []);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setCurrentTheme(document.documentElement.getAttribute("data-theme") || "light");
   }, [theme]);
 

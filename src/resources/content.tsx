@@ -85,7 +85,7 @@ const tools: { title: string; items: { name: string; icon?: string }[] }[] = [
 
 const newsletter: Newsletter = {
   display: false,
-  title: <>Subscribe to {person.firstName}'s Newsletter</>,
+  title: <>Subscribe to {person.firstName}’s Newsletter</>,
   description: <>Updates on business analysis, data and AI projects</>,
 };
 
@@ -134,7 +134,7 @@ const home: Home = {
   },
   subline: (
     <>
-      I'm {person.firstName}, a business analyst. I gather requirements, map processes and model
+      I’m {person.firstName}, a business analyst. I gather requirements, map processes and model
       data, and I build AI-assisted prototypes so stakeholders can try an idea instead of just reading
       about it.
     </>
@@ -162,12 +162,12 @@ const about: About = {
     title: "Introduction",
     description: (
       <>
-        I'm a Johannesburg-based business analyst with a Diploma in ICT in Business Analysis from
+        I’m a Johannesburg-based business analyst with a Diploma in ICT in Business Analysis from
         the Durban University of Technology. I turn vague business needs into requirements, user
         stories and process flows that developers can build from, and I test what gets built.
         <br />
         <br />
-        At UltimetaX and MICT SETA I worked between stakeholders and developers, most recently on MICT SETA's case management, onboarding
+        At UltimetaX and MICT SETA I worked between stakeholders and developers, most recently on MICT SETA’s case management, onboarding
         and verification, and property management systems. On the CAPACITI x Clickatell AI Bootcamp I
         shipped a new AI tool every week, ending with Tower, an airline complaint triage assistant
         with 89 automated tests and a person approving every reply. Then, with three teammates, I was team lead and business analyst on Relay, a help desk for a logistics company that is now live. The thread through all of it:{" "}
@@ -196,7 +196,7 @@ const about: About = {
             automated tests.
           </>,
           <>
-            Relay (Oct–Nov 2026): team lead and business analyst on an internal help desk for a
+            Relay (Oct 2026 – present): team lead and business analyst on an internal help desk for a
             logistics company, built with three teammates. Wrote the requirements, designed the
             database rules and security, and took it live on Vercel.
           </>,
@@ -219,7 +219,7 @@ const about: About = {
           <>Mapped processes and system flows, and built ERDs and data models.</>,
           <>
             Designed wireframes in Figma and Visily, and redesigned features when stakeholder
-            feedback showed the first solution didn't fit, including a vague dashboard brief I
+            feedback showed the first solution didn’t fit, including a vague dashboard brief I
             reshaped after consulting other departments.
           </>,
           <>
@@ -306,6 +306,15 @@ const about: About = {
         name: "CAPACITI x Clickatell AI Bootcamp",
         description: <>28 September – 23 October 2026. Four weekly individual AI projects.</>,
       },
+      {
+        name: "CAPACITI AI Bootcamp (8 weeks)",
+        description: (
+          <>
+            19 October 2026 – present. Relay, a team project built in two-week sprints, with me as
+            team lead and business analyst.
+          </>
+        ),
+      },
     ],
   },
   technical: {
@@ -329,7 +338,7 @@ const about: About = {
         description: (
           <>
             Process maps and system flows · user journeys · ERDs and data models · role and
-            permission design (e.g. Tower's four roles across separate airlines).
+            permission design (e.g. Tower’s four roles across separate airlines).
           </>
         ),
         tags: [],

@@ -264,7 +264,7 @@ export default function Home() {
             order things happen in, and they only showed up when I tested as each role.”
           </Heading>
           <Text variant="body-default-m" onBackground="neutral-medium">
-            On Relay, a manager's list once showed people from every company, and a new invitee could
+            On Relay, a manager’s list once showed people from every company, and a new invitee could
             reach the two-step sign-in before choosing a password. Now I write the rules, the edge cases
             and the order of each step down before building, and I test every role by hand before I call
             a feature done.
@@ -278,7 +278,7 @@ export default function Home() {
           Open to business analyst roles and AI product work
         </Heading>
         <Text onBackground="neutral-weak" variant="body-default-l">
-          Based in {person.locationLabel}. Let's talk.
+          Based in {person.locationLabel}. Let’s talk.
         </Text>
         <Row gap="12" wrap horizontal="center" paddingTop="8">
           {email && (

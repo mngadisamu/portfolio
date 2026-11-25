@@ -12,15 +12,16 @@ images:
   - "/images/projects/relay/dashboard.png"
   - "/images/projects/relay/submit.png"
   - "/images/projects/relay/tickets.png"
+  - "/images/projects/relay/admin.png"
 ---
 
-**Timeframe:** 19 Oct – 23 Nov 2026 · CAPACITI AI Bootcamp, with three teammates
+**Timeframe:** 19 Oct 2026 – present (showcase in progress) · CAPACITI AI Bootcamp (8 weeks, two-week sprints), with three teammates
 
 <StatGrid items={[
   { value: "4", label: "departments that requests are routed to: HR, IT, Finance and Operations" },
   { value: "8", label: "companies on one Relay, each seeing only its own people and tickets" },
   { value: "15,579", label: "past tickets loaded to feed the dashboard, reports and forecast" },
-  { value: "38", label: "numbered database migrations that set the rules, functions and audit entries" },
+  { value: "39", label: "numbered database migrations that set the rules, functions and audit entries" },
 ]} />
 
 ## The problem
@@ -56,20 +57,28 @@ Before building, I wrote the user stories with Given / When / Then acceptance cr
 - **Agents:** an inbox with a Mine filter, a ticket view and a template library.
 - **Managers:** a dashboard, forecast, approvals for purchases and leave, reports and Manage users.
 - **Compliance:** the audit log, flagged replies and the risk report.
-- **Platform admins:** create companies, and add each company's first system admin.
+- **Platform admins:** create companies, add each company's first system admin, and see each company's people, but never its tickets.
 
 <Grid columns="2" gap="12" s={{ columns: 1 }} marginY="16">
   <Media src="/images/projects/relay/submit.png" alt="Staff form for a new request, with subject, depot and urgency" radius="m" enlarge border="neutral-alpha-medium" />
   <Media src="/images/projects/relay/tickets.png" alt="Manager ticket list, filtered by status, with sensitive tags" radius="m" enlarge border="neutral-alpha-medium" />
 </Grid>
 
+## Keeping companies apart
+
+Relay started as one company's help desk and grew to eight companies on one system. The database rules keep each company's people and tickets apart for anyone who is signed in. An audit before the showcase found the gap those rules can't cover: jobs that run with nobody signed in, such as the Monday summaries and reports, automatic assignment and urgent escalation. Row rules don't apply to them, so they counted every company's tickets together and could have notified a manager in another company.
+
+I wrote the fix as one reviewed migration. Every one of those jobs now checks the company itself, and reports and summaries are kept per company. I tested it on the demo database with a second company inside a transaction that was rolled back, so nothing was left behind. I also locked a demo-only reset function on the live database, because it would have cleared every company's open tickets.
+
+![Platform admin page: companies on Relay, with counts and a form to add a company (sample data)](/images/projects/relay/admin.png)
+
 ## Built with
 
-**Next.js 15** and **React** with **TypeScript**, styled with **Tailwind CSS** and shadcn/ui. **Supabase** holds the **PostgreSQL** database, sign-in and row-level security on every table. The classifier is a TF-IDF and logistic regression model trained in **Google Colab** with scikit-learn, exported to JSON and run in TypeScript on the server, so no Python server runs in production. Drafts and summaries use the **Google Gemini API**, with the key kept on the server. Email notifications are built on **Resend** and are being switched on, and the site runs on **Vercel**.
+**Next.js 16** and **React** with **TypeScript**, styled with **Tailwind CSS** and shadcn/ui. **Supabase** holds the **PostgreSQL** database, sign-in and row-level security on every table. The classifier is a TF-IDF and logistic regression model trained in **Google Colab** with scikit-learn, exported to JSON and run in TypeScript on the server, so no Python server runs in production. Drafts and summaries use the **Google Gemini API**, with the key kept on the server. Email notifications are built on **Resend** and are being switched on, and the site runs on **Vercel**.
 
 ## What's next
 
-Switch on email notifications, and finish the auto-assignment and urgent-escalation rules on the live database.
+Automatic assignment and urgent escalation are now live. Next: switch on email notifications, add backup codes for two-step sign-in, and let staff choose a request type on the form so purchases and leave go to a manager on their own.
 
 ## What I learned
 

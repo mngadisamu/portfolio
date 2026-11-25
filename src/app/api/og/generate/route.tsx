@@ -62,7 +62,10 @@ export async function GET(request: Request) {
             gap: "5rem",
           }}
         >
+          {/* Share images are drawn by next/og, which only supports a plain <img>. */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
+            alt={person.name}
             src={baseURL + person.avatar}
             style={{
               width: "12rem",
