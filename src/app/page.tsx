@@ -51,6 +51,24 @@ const steps = [
   },
 ];
 
+const lessons = [
+  {
+    icon: "clipboard",
+    title: "Write the rules first",
+    text: "Who may see, change and approve what, written down before any screen is built.",
+  },
+  {
+    icon: "users",
+    title: "Test as every role",
+    text: "Staff, agent, manager, compliance and admin, by hand, before I call a feature done.",
+  },
+  {
+    icon: "shield",
+    title: "Check what runs unseen",
+    text: "Scheduled jobs run with nobody signed in, so they skip the usual checks. They get their own.",
+  },
+];
+
 function SectionTitle({ eyebrow, title }: { eyebrow: string; title: string }) {
   return (
     <Column gap="8" paddingX="l" fillWidth>
@@ -215,7 +233,7 @@ export default function Home() {
 
       {/* Featured */}
       <Column fillWidth gap="24">
-        <SectionTitle eyebrow="Featured case study" title="Relay: AI that routes and drafts, people who decide" />
+        <SectionTitle eyebrow="Featured case study" title="Relay: an AI help desk my team took live" />
         <Projects range={[1, 1]} />
       </Column>
 
@@ -243,32 +261,41 @@ export default function Home() {
       </Column>
 
       {/* Reflection */}
-      <Column fillWidth paddingX="l">
-        <Column
-          fillWidth
-          gap="16"
-          padding="xl"
-          radius="l"
-          background="brand-alpha-weak"
-          border="brand-alpha-medium"
-        >
-          <Text
-            variant="label-strong-s"
-            onBackground="brand-medium"
-            style={{ textTransform: "uppercase", letterSpacing: "0.08em" }}
-          >
-            The lesson I keep
+      <Column fillWidth gap="24">
+        <SectionTitle eyebrow="The lesson I keep" title="The hardest bugs weren’t in the AI" />
+        <Column fillWidth paddingX="l" gap="16">
+          <Text variant="body-default-l" onBackground="neutral-medium" wrap="balance">
+            On Relay they were about who can see and change what. A manager’s list once showed people
+            from every company, and scheduled jobs counted every company’s tickets together. Each one
+            only showed up when I tested as a real person would use it. So now I work like this:
           </Text>
-          <Heading as="p" variant="heading-strong-xl" wrap="balance">
-            “The rules were the hard part. The bugs that mattered were about who may see what and the
-            order things happen in, and they only showed up when I tested as each role.”
-          </Heading>
-          <Text variant="body-default-m" onBackground="neutral-medium">
-            On Relay, a manager’s list once showed people from every company, and a new invitee could
-            reach the two-step sign-in before choosing a password. Now I write the rules, the edge cases
-            and the order of each step down before building, and I test every role by hand before I call
-            a feature done.
-          </Text>
+          <Row fillWidth gap="12" wrap>
+            {lessons.map((l, i) => (
+              <Column
+                key={l.title}
+                flex={1}
+                minWidth={14}
+                gap="8"
+                padding="l"
+                radius="l"
+                background="surface"
+                border="neutral-alpha-medium"
+              >
+                <Row gap="8" vertical="center">
+                  <Icon name={l.icon} onBackground="brand-medium" />
+                  <Text variant="label-default-s" onBackground="neutral-weak">
+                    0{i + 1}
+                  </Text>
+                </Row>
+                <Heading as="h3" variant="heading-strong-m">
+                  {l.title}
+                </Heading>
+                <Text variant="body-default-s" onBackground="neutral-medium">
+                  {l.text}
+                </Text>
+              </Column>
+            ))}
+          </Row>
         </Column>
       </Column>
 
